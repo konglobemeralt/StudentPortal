@@ -6,6 +6,8 @@
  * 2) Implement the three functions getInformation, registerStudent
  *    and unregisterStudent.
  */
+import org.postgresql.util.PSQLException;
+
 import java.sql.*; // JDBC stuff.
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -227,8 +229,13 @@ public class StudentPortal
         pstmt = conn.prepareStatement("INSERT INTO Registrations VALUES (?,?)");
         pstmt.setString(1,student);
         pstmt.setString(2,course);
-        pstmt.execute();
-        System.out.println(student + "was registered to the course " + course);
+        try {
+            pstmt.execute();
+            System.out.println(student + "was registered to the course " + course);
+        }catch (SQLException sqlEx){
+            System.out.println(sqlEx);
+        }
+
         pstmt.close();
     }
 
@@ -242,9 +249,15 @@ public class StudentPortal
         pstmt = conn.prepareStatement("DELETE FROM Registrations WHERE student = ? AND course = ?");
         pstmt.setString(1,student);
         pstmt.setString(2,course);
-        pstmt.execute();
+        try {
+            pstmt.execute();
+            System.out.println(student + "was deleted from the course " + course);
+        }catch (PSQLException sqlEx){
+            System.out.println(sqlEx);
+        }
 
-        System.out.println(student + "was deleted from the course " + course);
+
+
         pstmt.close();
     }
 
