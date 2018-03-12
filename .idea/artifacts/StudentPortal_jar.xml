@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="StudentPortal:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/StudentPortal_jar</output-path>
+    <root id="archive" name="StudentPortal.jar">
+      <element id="module-output" name="StudentPortal" />
+      <element id="file-copy" path="$USER_HOME$/Downloads/postgresql-42.2.1(1).jar" />
+    </root>
+  </artifact>
+</component>
